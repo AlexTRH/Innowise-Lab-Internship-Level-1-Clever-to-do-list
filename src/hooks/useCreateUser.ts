@@ -28,6 +28,7 @@ const useCreateUser = (
   const [errorConfirmPass, setErrorConfirmPass] = useState(false);
   const navigate = useNavigate();
 
+  console.log(errorName);
   const getName = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -51,10 +52,10 @@ const useCreateUser = (
 
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!validReg.email.test(email)) {
-      setErrorEmail(true);
-    } else {
+    if (validReg.email.test(email)) {
       setErrorEmail(false);
+    } else {
+      setErrorEmail(true);
     }
   }, [email]);
   useEffect(() => {

@@ -1,0 +1,31 @@
+.card_of_list {
+    width: 90%;
+    height: 100%;
+    border-radius: 20px;
+    padding: 50px;
+    overflow: auto;
+    box-sizing: border-box;
+    position: relative;
+    min-height: 65vh;
+    max-height: 65vh;
+}
+
+.no_plan {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    min-height: calc(65vh - 100px);
+}
+
+.switch_graphs {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.switch_graphs .css-1nr2wod.Mui-checked {
+    color: #ff611a;
+}

@@ -1,11 +1,13 @@
 // import React, { useEffect } from 'react';
 import './Welcome.css';
 import { Grid, Button } from '@mui/material';
-
-import { useNavigate } from 'react-router-dom';
 import planImg from '../../assets/img/plans.jpg';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../store/user/selector';
+import { useNavigate } from 'react-router-dom';
 
-export const Welcome = () => {
+const Welcome = () => {
+  const { name } = useSelector(userSelector);
   const navigator = useNavigate();
   return (
     <div className={'wrapper_welcome'}>
@@ -27,7 +29,11 @@ export const Welcome = () => {
             variant="outlined"
             className={'explore'}
             onClick={() => {
-              navigator('signup');
+              if (name) {
+                navigator('plans');
+              } else {
+                navigator('signin');
+              }
             }}
           >
             Explore
