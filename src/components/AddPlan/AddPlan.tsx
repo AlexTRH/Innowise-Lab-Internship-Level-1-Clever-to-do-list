@@ -57,7 +57,7 @@ const AddPlan = memo(
             <Grid item xs={12}>
               <TextField
                 select
-                label={'Important'}
+                label={'Importance'}
                 onChange={getImportant}
                 defaultValue={important}
               >

@@ -5,10 +5,11 @@
 }
 
 .wrapper_card .content {
-    box-shadow: 10px 5px 5px #5b5b5b;
+    box-shadow: 3px 3px 6px #5b5b5b;
     display: flex;
     justify-content: center;
-    border: 1px solid black;
+    /*padding-right: 10px;*/
+    border: 2px solid #00bdbe;
     animation: gradient 10s infinite linear;
     background-size: 400%;
     position: relative;
@@ -29,15 +30,15 @@
 }
 
 .content .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked {
-    color: #ff611a;
+    color: #00bdbe;
 }
 
 .card_of_list .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked {
-    color: #ff611a;
+    color: #00bdbe;
 }
 
 .card_of_list
 .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked
 + .MuiSwitch-track {
-    background-color: #ff8b5e;
+    background-color: rgba(0, 190, 184, 0.75);
 }

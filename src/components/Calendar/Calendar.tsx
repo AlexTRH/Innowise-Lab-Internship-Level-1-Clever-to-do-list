@@ -76,6 +76,7 @@ const Calendar = memo(() => {
     }
 
     const key = new Date(year, nextMonth + 1).toISOString().slice(0, 7);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     db.getPlansOnMonth(email!, key)
       .then((result) => {
         let res = result.data();
@@ -132,11 +133,11 @@ const Calendar = memo(() => {
   }, [arrOfDays]);
   return (
     <Stack
-    // direction="row"
-    // spacing={2}
-    // height={100}
-    // className={'calendar_wrapper'}
-    // ref={carouselRef}
+      direction="row"
+      spacing={2}
+      height={100}
+      className={'calendar_wrapper'}
+      // ref={carouselRef}
     >
       <AliceCarousel
         autoWidth

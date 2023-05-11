@@ -8,6 +8,7 @@
     padding: 0 60px;
     position: relative;
     box-sizing: border-box;
+    -webkit-user-select: none;
 }
 
 .alice-carousel__prev-btn {
@@ -16,6 +17,7 @@
     left: 20px;
     top: 5px;
     font-size: 40px;
+
 
 }
 

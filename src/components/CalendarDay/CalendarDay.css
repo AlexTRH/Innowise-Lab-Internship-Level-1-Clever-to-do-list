@@ -2,14 +2,18 @@
     color: black;
     padding: 10px;
     text-align: center;
-    border-radius: 5px;
-    border: 1px solid black;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
     cursor: pointer;
     position: relative;
 }
 
+.day_element:hover {
+    background-color: #00bdbe;
+}
+
 .selected {
-    background-color: black;
+    background-color: #024f4f;
     color: white;
 }
 
@@ -18,7 +22,7 @@
 }
 
 .day_element .day_of {
-    color: #a83411;
+    color: orange;
 }
 
 .circle_important {
