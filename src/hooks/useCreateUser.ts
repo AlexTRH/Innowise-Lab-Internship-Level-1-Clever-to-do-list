@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as validReg from '../regexp/validators';
@@ -18,72 +18,68 @@ const useCreateUser = (
   defaultPassword = '',
   defaultConfirmPass = ''
 ) => {
-  const [name, setName] = useState(defaultName);
-  const [email, setEmail] = useState(defaultEmail);
-  const [password, setPassword] = useState(defaultPassword);
-  const [confirmPass, setConfirmPass] = useState(defaultConfirmPass);
-  const [errorName, setErrorName] = useState(false);
-  const [errorEmail, setErrorEmail] = useState(false);
-  const [errorPassword, setErrorPassword] = useState(false);
-  const [errorConfirmPass, setErrorConfirmPass] = useState(false);
+  const [name, setName] = useState({
+    value: defaultName,
+    error: false,
+  });
+  const [email, setEmail] = useState({
+    value: defaultEmail,
+    error: false,
+  });
+  const [password, setPassword] = useState({
+    value: defaultPassword,
+    error: false,
+  });
+  const [confirmPass, setConfirmPass] = useState({
+    value: defaultConfirmPass,
+    error: false,
+  });
   const navigate = useNavigate();
 
-  console.log(errorName);
   const getName = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setName(event.target.value);
+    setName({
+      value: event.target.value,
+      error: !validReg.name.test(event.target.value),
+    });
   };
   const getEmail = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setEmail(event.target.value);
+    setEmail({
+      value: event.target.value,
+      error: !validReg.email.test(event.target.value),
+    });
   };
   const getPassword = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setPassword(event.target.value);
+    setPassword({
+      value: event.target.value,
+      error: !validReg.pass.test(event.target.value),
+    });
   };
   const getConfirmPass = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setConfirmPass(event.target.value);
+    setConfirmPass({
+      value: event.target.value,
+      error: event.target.value !== password.value,
+    });
   };
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (validReg.email.test(email)) {
-      setErrorEmail(false);
-    } else {
-      setErrorEmail(true);
-    }
-  }, [email]);
-  useEffect(() => {
-    if (validReg.pass.test(password)) {
-      setErrorPassword(false);
-    } else {
-      setErrorPassword(true);
-    }
-  }, [password]);
-  useEffect(() => {
-    if (validReg.name.test(name)) {
-      setErrorName(false);
-    } else {
-      setErrorName(true);
-    }
-  }, [name]);
-  useEffect(() => {
-    if (confirmPass === password) {
-      setErrorConfirmPass(false);
-    } else {
-      setErrorConfirmPass(true);
-    }
-  }, [confirmPass]);
+
   const createUser = (): void => {
     dispatch(setLoading(IsLoadingEnum.pending));
-    if (!errorName && !errorEmail && !errorConfirmPass && !errorPassword) {
+    if (!name.error && !email.error && !confirmPass.error && !password.error) {
       const auth = getAuth();
-      let promise = createUserWithEmailAndPassword(auth, email, password);
+      let promise = createUserWithEmailAndPassword(
+        auth,
+        email.value,
+        password.value
+      );
       toast
         .promise(promise, {
           pending: 'Loading',
@@ -91,11 +87,19 @@ const useCreateUser = (
         })
         .then((result) => {
           toast.success('User created');
-          dispatch(login({ name, email, uid: result.user.uid }));
+          dispatch(
+            login({
+              name: name.value,
+              email: email.value,
+              uid: result.user.uid,
+            })
+          );
           navigate('../');
           return result;
         })
-        .then((result) => db.setUserInfo(name, email, result.user.uid))
+        .then((result) =>
+          db.setUserInfo(name.value, email.value, result.user.uid)
+        )
         .catch((error: AuthError) => toast.error(error.message))
         .finally(() => {
           dispatch(setLoading(IsLoadingEnum.success));
@@ -105,10 +109,6 @@ const useCreateUser = (
     }
   };
   return {
-    errorConfirmPass,
-    errorEmail,
-    errorName,
-    errorPassword,
     getConfirmPass,
     getName,
     getEmail,

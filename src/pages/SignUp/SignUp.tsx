@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { TextField, Button, Box, Grid } from '@mui/material';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import { Link } from 'react-router-dom';
-import './SignUp.css';
+import './signUp.css';
 import GoogleIcon from '@mui/icons-material/Google';
 import useGoogleAuth from '../../hooks/useGoogleAuth';
 import useCreateUser from '../../hooks/useCreateUser';
@@ -10,10 +10,6 @@ import useCreateUser from '../../hooks/useCreateUser';
 const SignUp = () => {
   const { googleAuth } = useGoogleAuth();
   const {
-    errorConfirmPass,
-    errorEmail,
-    errorName,
-    errorPassword,
     getConfirmPass,
     getName,
     getEmail,
@@ -38,14 +34,14 @@ const SignUp = () => {
           >
             <Grid item xs={12}>
               <TextField
-                error={errorName}
+                error={name.error}
                 id="input_name"
                 variant="outlined"
                 color="secondary"
                 label="Name"
                 className={'inputText'}
                 onChange={getName}
-                value={name}
+                value={name.value}
                 fullWidth
                 required
                 sx={{ mb: 4 }}
@@ -53,14 +49,14 @@ const SignUp = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                error={errorEmail}
+                error={email.error}
                 id="input_email"
                 variant="outlined"
                 color="secondary"
                 label="Email"
                 onChange={getEmail}
                 className={'inputText'}
-                value={email}
+                value={email.value}
                 type={'email'}
                 fullWidth
                 required
@@ -69,14 +65,14 @@ const SignUp = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                error={errorPassword}
+                error={password.error}
                 id="input_password"
                 variant="outlined"
                 color="secondary"
                 label="Password"
                 onChange={getPassword}
                 className={'inputText'}
-                value={password}
+                value={password.value}
                 type={'password'}
                 required
                 fullWidth
@@ -85,7 +81,7 @@ const SignUp = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                error={errorConfirmPass}
+                error={confirmPass.error}
                 id="input_confirm_password"
                 variant="outlined"
                 color="secondary"
@@ -93,7 +89,7 @@ const SignUp = () => {
                 onChange={getConfirmPass}
                 className={'inputText'}
                 type={'password'}
-                value={confirmPass}
+                value={confirmPass.value}
                 required
                 fullWidth
                 sx={{ mb: 4 }}
