@@ -1,0 +1,47 @@
+.App .important {
+    background-color: #f7c832;
+    border: 2px solid #f7c832;
+    fill: #f7c832;
+}
+
+.App .very_important {
+    background-color: #ff8c2c;
+    border: 2px solid #ff8c2c;
+    fill: #ff8c2c;
+}
+
+.App .not_matter {
+    background-color: #1aaf63;
+    border: 2px solid #1aaf63;
+    fill: #1aaf63;
+}
+
+.wrapper_plans_content .element_of_plan {
+    padding: 10px 20px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.wrapper_plans_content .element_of_plan .icon_full {
+    opacity: 0;
+}
+
+.wrapper_plans_content .element_of_plan:hover .icon_full {
+    opacity: 1;
+}
+
+.wrapper_plans_content .element_of_plan .icon_del {
+    opacity: 0;
+}
+
+.wrapper_plans_content .element_of_plan:hover .icon_del {
+    opacity: 1;
+}
+
+.wrapper_plans_content .element_of_plan:hover {
+    cursor: pointer;
+}
+
+.opacity_element {
+    opacity: 0.3;
+}

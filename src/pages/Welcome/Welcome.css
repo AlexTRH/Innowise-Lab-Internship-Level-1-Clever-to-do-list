@@ -18,13 +18,13 @@
     width: 120px;
     height: 40px;
     background: #ffffff;
-    border: 0px;
+    border: 0;
     border-radius: 50px;
     color: #00bdbe;
 }
 
 .wrapper_welcome button:hover {
-    background-color: #ff7f29;
+    background-color: #007d7d;
     color: white;
     border: white;
 }
