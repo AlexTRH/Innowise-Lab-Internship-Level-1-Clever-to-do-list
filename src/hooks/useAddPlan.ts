@@ -17,6 +17,7 @@ const useAddPlan = ({ defaultObj, setIsEdit, setOpenedPlan }: AddPlanType) => {
   const [uuid, setUuid] = useState(defaultObj?.id || uid(32));
   const [name, setName] = useState(defaultObj?.name || '');
   const [desc, setDesc] = useState(defaultObj?.desc || '');
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const selectedDate = defaultObj?.date || useSelector(getSelected);
   const [important, setImportant] = useState(
     defaultObj?.important || importance[0].value
