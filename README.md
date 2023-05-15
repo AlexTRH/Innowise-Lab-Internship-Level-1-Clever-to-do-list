@@ -1,53 +1,51 @@
 # Innowise Lab Internship: Level 1: Clever to-do-list
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- [Requirements](https://drive.google.com/file/d/18I1PxOxZn2lwm__YeOtMNoWeiXygKwwN/view?usp=share_link)
+- [App](https://zaebati-planner.netlify.app/)
 
-## Available Scripts
+### How to run the app
 
-In the project directory, you can run:
+1. Clone the repository on your local machine  
+   `git clone https://github.com/AlexTRH/Innowise-Lab-Internship-Level-1-Clever-to-do-list.git`
+2. Run `npm install` to install all dependencies
+3. Run `npm start`. You'll see a new tab in the browser with the app running.
 
-### `npm start`
+#### How to create git hooks
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Run `npm run prepare`
+- Add a hook, e.g. `npx husky add .husky/pre-commit "npm lint"` (Will run `npm test` before making a commit)
+- For more information, visit [husky npm page](https://www.npmjs.com/package/husky)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Application stack
 
-### `npm test`
+- React, React Router
+- Redux-toolkit
+- Firebase
+- TypeScript
+- MUI
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more
-information.
+### Database
 
-### `npm run build`
+- Event information is an object with keys
+    - `name:string`;
+    - `desc:string`;
+    - `timeStart:string` format `hh:mm`
+    - `timeEnd:string` format `hh:mm`
+    - `date:string` format `yyyy-mm-dd`
+    - `id:string`
+    - `important` corresponds to one of `not_matter,very_important,important`
+    - `isFinished:boolean`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Database have 1 main collection `userinfo`
+- And a rest collection have names from the user's email
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Folder structure/Project information
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will
-remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right
-into your project so you have full control over them. All of the commands except `eject` will still work, but they will
-point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you
-shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t
-customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in
-the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Project boilerplate was generated via `create-react-app --template typescript`
+- You can find HTML and initial CRA setup in `public` folder
+- React router pages can be found in `src/pages`
+- Regular components which are not pages themselves can be found in `src/components`.
+- Pictures can be found in `src/assets/img`.
+- In `src/services`, there are classes for creating db services and their instances that proxy interaction with DB.
+- `src/store` contains reducers which created with redux/toolkit
+- `src/regexp` contains RegExp for validation
