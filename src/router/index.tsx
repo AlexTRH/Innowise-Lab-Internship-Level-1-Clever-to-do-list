@@ -1,7 +1,5 @@
-// import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
-// import { Layout } from './Layout';
 import Welcome from '../pages/Welcome/Welcome';
 import SignIn from '../pages/SignIn/SignIn';
 import SignUp from '../pages/SignUp/SignUp';
@@ -35,26 +33,3 @@ const Router = () => {
   );
 };
 export default Router;
-
-// function Router() {
-//   const { email } = useSelector(userSelector);
-//   const router = createBrowserRouter([
-//     {
-//       element: <Layout />,
-//       children: [
-//         {
-//           path: '/',
-//           element: <Welcome />,
-//         },
-//         {
-//           path: '/signUp',
-//           element: <SignUp />,
-//         },
-//       ],
-//     },
-//   ]);
-//
-//   return <RouterProvider router={router} />;
-// }
-//
-// export default Router;
