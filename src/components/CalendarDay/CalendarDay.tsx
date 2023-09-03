@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { Grid, Stack } from '@mui/material';
 import { ICalendarDay } from './ICalendarDay';
 import './CalendarDay.css';
-import { importance, MonthArr } from '../../constants';
+import { importance, MonthArr } from '../../constants/constants';
 import { useDispatch } from 'react-redux';
 import { setSelected, setWorkMode } from '../../store/workMode/workModeSlice';
 import { setGraphs } from '../../store/switchGraphs/switchGraphsSlice';
@@ -42,12 +42,8 @@ const CalendarDay = memo(
               dispatch(setLoading(IsLoadingEnum.success));
             }}
           >
-            <div className={'icons_important'}>
-              <Grid
-                container
-                direction={'row'}
-                justifyContent={'space-between'}
-              >
+            <div className="icons_important">
+              <Grid container direction="row" justifyContent="space-between">
                 <Grid item>
                   <div
                     className={`${

@@ -6,7 +6,7 @@ import {
   daysInMonth,
   paddingCalendar,
   widthCalendarDay,
-} from '../../constants';
+} from '../../constants/constants';
 import CalendarDay from '../CalendarDay/CalendarDay';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
@@ -76,7 +76,6 @@ const Calendar = memo(() => {
     }
 
     const key = new Date(year, nextMonth + 1).toISOString().slice(0, 7);
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     db.getPlansOnMonth(email!, key)
       .then((result) => {
         let res = result.data();

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import processingData from '../helpers/ProcessingData';
-import { importance } from '../constants';
+import { importance } from '../constants/constants';
 import { userSelector } from '../store/user/selector';
 import { getPlans } from '../store/plans/selector';
 import { useSelector } from 'react-redux';

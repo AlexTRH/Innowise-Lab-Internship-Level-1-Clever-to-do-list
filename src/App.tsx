@@ -1,9 +1,9 @@
 import './App.css';
-import Router from '../router';
-import Header from './Header/Header';
+import Router from './router';
+import Header from './components/Header/Header';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import useCheckingAuth from '../hooks/useCheckingAuth';
+import useCheckingAuth from './hooks/useCheckingAuth';
 
 function App() {
   useCheckingAuth();

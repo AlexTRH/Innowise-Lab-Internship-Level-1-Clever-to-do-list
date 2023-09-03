@@ -6,7 +6,7 @@ import { uid } from 'uid';
 import { useDispatch, useSelector } from 'react-redux';
 import { userSelector } from '../store/user/selector';
 import { getSelected } from '../store/workMode/selector';
-import { importance } from '../constants';
+import { importance } from '../constants/constants';
 import { AddPlanType } from '../components/AddPlan/AddPlan.type';
 import processingData from '../helpers/ProcessingData';
 

@@ -36,5 +36,12 @@ export function dayInWeek(
   return DayOfWeek[date.getDay()];
 }
 
+export const ButtonLinks = {
+  signin: 'Sign in',
+  signup: 'Sign Up',
+  plans: 'plans',
+  profile: 'profile',
+};
+
 export const paddingCalendar = 60;
 export const widthCalendarDay = 90;

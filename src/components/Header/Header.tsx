@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../store/user/selector';
-import { Box, Grid } from '@mui/material';
 import './Header.scss';
 import Logo from '../Logo/Logo';
 import ButtonLink from '../ButtonLink/ButtonLink';
 import ButtonSign from '../ButtonsSign/ButtonSign';
+import { ButtonLinks } from '../../constants/constants';
 
 const Header = () => {
   const { email } = useSelector(userSelector);
@@ -14,36 +14,15 @@ const Header = () => {
       <Logo />
 
       <div className="header__buttons">
-        <ButtonLink to={email ? 'plans' : 'signin'}>Plans</ButtonLink>
+        <ButtonLink to={email ? ButtonLinks.plans : ButtonLinks.signin}>
+          Plans
+        </ButtonLink>
         {email ? (
-          <ButtonLink to={'profile'}>Profile</ButtonLink>
+          <ButtonLink to={ButtonLinks.profile}>Profile</ButtonLink>
         ) : (
           <ButtonSign />
         )}
       </div>
-
-      {/*<Grid*/}
-      {/*  container*/}
-      {/*  spacing={2}*/}
-      {/*  direction="row"*/}
-      {/*  justifyContent="flex-start"*/}
-      {/*  alignItems="center"*/}
-      {/*  className={'button_entry'}*/}
-      {/*>*/}
-      {/*  /!*<Grid item>*!/*/}
-      {/*  /!*  <Logo />*!/*/}
-      {/*  /!*</Grid>*!/*/}
-      {/*  /!*<Grid item>*!/*/}
-      {/*  /!*  <ButtonLink to={email ? 'plans' : 'signin'}>Plans</ButtonLink>*!/*/}
-      {/*  /!*</Grid>*!/*/}
-      {/*  /!*<Grid item>*!/*/}
-      {/*  /!*  {email ? (*!/*/}
-      {/*  /!*    <ButtonLink to={'profile'}>Profile</ButtonLink>*!/*/}
-      {/*  /!*  ) : (*!/*/}
-      {/*  /!*    <ButtonSign />*!/*/}
-      {/*  /!*  )}*!/*/}
-      {/*  /!*</Grid>*!/*/}
-      {/*</Grid>*/}
     </header>
   );
 };
