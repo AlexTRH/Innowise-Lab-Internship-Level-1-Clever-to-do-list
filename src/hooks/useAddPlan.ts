@@ -6,9 +6,10 @@ import { uid } from 'uid';
 import { useDispatch, useSelector } from 'react-redux';
 import { userSelector } from '../store/user/selector';
 import { getSelected } from '../store/workMode/selector';
-import { importance } from '../constants/constants';
 import { AddPlanType } from '../components/AddPlan/AddPlan.type';
 import processingData from '../helpers/ProcessingData';
+
+import { importance } from '../constants/importance.constant';
 
 const useAddPlan = ({ defaultObj, setIsEdit, setOpenedPlan }: AddPlanType) => {
   const { email } = useSelector(userSelector);

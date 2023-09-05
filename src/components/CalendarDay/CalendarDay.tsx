@@ -2,7 +2,6 @@ import React, { memo } from 'react';
 import { Grid, Stack } from '@mui/material';
 import { ICalendarDay } from './ICalendarDay';
 import './CalendarDay.css';
-import { importance, MonthArr } from '../../constants/constants';
 import { useDispatch } from 'react-redux';
 import { setSelected, setWorkMode } from '../../store/workMode/workModeSlice';
 import { setGraphs } from '../../store/switchGraphs/switchGraphsSlice';
@@ -11,6 +10,8 @@ import {
   setLoading,
 } from '../../store/isLoading/isLoadingSlice';
 import useIsImportant from '../../hooks/useIsImportant';
+import { MonthArr } from '../../constants/monthArr.constant';
+import { importance } from '../../constants/importance.constant';
 
 const CalendarDay = memo(
   ({ dayOfWeek, dayOfMonth, month, isSelected, selected }: ICalendarDay) => {

@@ -30,6 +30,43 @@ const OneCard = ({
     timeEnd,
     isFinished,
   });
+
+  const contentItems = [
+    {
+      title: 'Name:',
+      value: name,
+    },
+    {
+      title: 'Date:',
+      value: addingDate.toISOString(),
+    },
+    {
+      title: 'Description:',
+      value: desc || '',
+    },
+    {
+      title: 'Time start:',
+      value: timeStart,
+    },
+    {
+      title: 'Time end:',
+      value: timeEnd,
+    },
+  ];
+
+  const finishedCheckbox = {
+    title: 'Finished',
+    condition: !(isFinished || `${addingDate}T${timeEnd}` < date),
+    component: (
+      <Checkbox
+        value={isEnd}
+        onChange={(e) => {
+          setFinished(e.target.checked);
+        }}
+      />
+    ),
+  };
+
   return (
     <Box className={'wrapper_card'}>
       <Card className={'content'}>
@@ -41,36 +78,15 @@ const OneCard = ({
             <div className={'edit'} onClick={() => setIsEdit(true)}>
               <EditIcon />
             </div>
-
-            <Typography>Name:</Typography>
-            <Typography variant="h6" gutterBottom component="div">
-              {name}
-            </Typography>
-            <Typography>Date:</Typography>
-            <Typography variant="h6" gutterBottom component="div">
-              {addingDate.toISOString()}
-            </Typography>
-            <Typography>Description:</Typography>
-            <Typography variant="h6" gutterBottom component="div">
-              {desc && ''}
-            </Typography>
-            <Typography>Time start:</Typography>
-            <Typography variant="h6" gutterBottom component="div">
-              {timeStart}
-            </Typography>
-            <Typography>Time end:</Typography>
-            <Typography variant="h6" gutterBottom component="div">
-              {timeEnd}
-            </Typography>
-            <Typography>Finished </Typography>
-            {!(isFinished || `${addingDate}T${timeEnd}` < date) && (
-              <Checkbox
-                value={isEnd}
-                onChange={(e) => {
-                  setFinished(e.target.checked);
-                }}
-              />
-            )}
+            {contentItems.map((item, index) => (
+              <div key={index}>
+                <Typography>{item.title}</Typography>
+                <Typography variant="h6" gutterBottom component="div">
+                  {item.value}
+                </Typography>
+              </div>
+            ))}
+            {finishedCheckbox.condition && finishedCheckbox.component}
           </CardContent>
         )}
         {isEdit && (

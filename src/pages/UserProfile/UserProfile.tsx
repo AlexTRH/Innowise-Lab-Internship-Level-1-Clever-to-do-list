@@ -18,16 +18,22 @@ const UserProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const handleSignOut = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        dispatch(logout());
+        navigate('../');
+      })
+      .catch((error) => {
+        console.error('Sign out error:', error);
+      });
+  };
+
   const buttonsData = [
     {
       label: 'Sign Out',
-      onClick: () => {
-        let auth = getAuth();
-        signOut(auth).then(() => {
-          dispatch(logout());
-          navigate('../');
-        });
-      },
+      onClick: handleSignOut,
     },
   ];
 

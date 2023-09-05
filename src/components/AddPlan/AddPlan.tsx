@@ -8,10 +8,11 @@ import {
   MenuItem,
   TextField,
 } from '@mui/material';
-import { importance } from '../../constants/constants';
 import { AddPlanType } from './AddPlan.type';
 import './AddPlan.css';
 import useAddPlan from '../../hooks/useAddPlan';
+
+import { importance } from '../../constants/importance.constant';
 
 const AddPlan = memo(
   ({ defaultObj, setIsEdit, setOpenedPlan }: AddPlanType) => {
