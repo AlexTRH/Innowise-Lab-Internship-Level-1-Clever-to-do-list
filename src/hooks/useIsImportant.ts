@@ -4,7 +4,7 @@ import { userSelector } from '../store/user/selector';
 import { getPlans } from '../store/plans/selector';
 import { useSelector } from 'react-redux';
 
-import { importance } from '../constants/importance.constant';
+import { importance } from '../constants/Button.constant';
 
 const useIsImportant = (selected: Date) => {
   const plans = useSelector(getPlans);

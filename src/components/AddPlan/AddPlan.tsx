@@ -12,7 +12,7 @@ import { AddPlanType } from './AddPlan.type';
 import './AddPlan.css';
 import useAddPlan from '../../hooks/useAddPlan';
 
-import { importance } from '../../constants/importance.constant';
+import { importance } from '../../constants/Button.constant';
 
 const AddPlan = memo(
   ({ defaultObj, setIsEdit, setOpenedPlan }: AddPlanType) => {

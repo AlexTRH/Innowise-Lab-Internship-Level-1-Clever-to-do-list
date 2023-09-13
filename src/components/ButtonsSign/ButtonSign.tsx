@@ -1,7 +1,7 @@
 import React from 'react';
 import ButtonLink from '../ButtonLink/ButtonLink';
 
-import { ButtonLinks } from '../../constants/ButtonLinks.constant';
+import { ButtonLinks } from '../../constants/Button.constant';
 
 const ButtonSign = () => {
   return (

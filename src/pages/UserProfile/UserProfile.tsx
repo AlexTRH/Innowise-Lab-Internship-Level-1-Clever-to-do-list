@@ -30,13 +30,6 @@ const UserProfile = () => {
       });
   };
 
-  const buttonsData = [
-    {
-      label: 'Sign Out',
-      onClick: handleSignOut,
-    },
-  ];
-
   return (
     <section className={'user_profile'}>
       <Card sx={{ width: 500 }}>
@@ -61,11 +54,9 @@ const UserProfile = () => {
           </Typography>
         </CardContent>
         <CardActions>
-          {buttonsData.map((button, index) => (
-            <Button key={index} size="small" onClick={button.onClick}>
-              {button.label}
-            </Button>
-          ))}
+          <Button size="small" onClick={handleSignOut}>
+            Sign Out
+          </Button>
         </CardActions>
       </Card>
     </section>

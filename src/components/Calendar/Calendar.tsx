@@ -19,10 +19,12 @@ import { setPlans } from '../../store/plans/plansSlice';
 import { getSelected } from '../../store/workMode/selector';
 import { IPlans } from '../../store/plans/IPlans';
 import processingData from '../../helpers/ProcessingData';
-import { daysInMonth } from '../../constants/daysInMonth.constant';
 
-import { currDayInMonth } from '../../constants/currDayInMonth.constant';
-import { dayInWeek } from '../../constants/dayInWeek.constnat';
+import {
+  currDayInMonth,
+  dayInWeek,
+  daysInMonth,
+} from '../../constants/Dates.constant';
 
 const Calendar = memo(() => {
   const { email } = useSelector(userSelector);
