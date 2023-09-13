@@ -17,6 +17,26 @@ const UserProfile = () => {
   const { name, email, uid } = useSelector(userSelector);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        dispatch(logout());
+        navigate('../');
+      })
+      .catch((error) => {
+        console.error('Sign out error:', error);
+      });
+  };
+
+  const buttonsData = [
+    {
+      label: 'Sign Out',
+      onClick: handleSignOut,
+    },
+  ];
+
   return (
     <section className={'user_profile'}>
       <Card sx={{ width: 500 }}>
@@ -41,18 +61,11 @@ const UserProfile = () => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button
-            size="small"
-            onClick={() => {
-              let auth = getAuth();
-              signOut(auth).then(() => {
-                dispatch(logout());
-                navigate('../');
-              });
-            }}
-          >
-            Sign Out
-          </Button>
+          {buttonsData.map((button, index) => (
+            <Button key={index} size="small" onClick={button.onClick}>
+              {button.label}
+            </Button>
+          ))}
         </CardActions>
       </Card>
     </section>

@@ -23,29 +23,45 @@ const ElementOfListPlans = ({
   isFinished,
   date,
 }: ElementOfListPlansType) => {
-  const disabled =
-    isFinished ||
-    `${processingData.getDateWithoutHour(addingDate)}T${timeEnd}` < date;
   const { email } = useSelector(userSelector);
   const dispatch = useDispatch();
+
+  const elementClasses = `${important} element_of_plan ${
+    isFinished ||
+    `${processingData.getDateWithoutHour(addingDate)}T${timeEnd}` < date
+      ? 'opacity_element'
+      : ''
+  }`;
+
+  const handleElementClick = () => {
+    setOpenedPlan({
+      id,
+      name,
+      desc,
+      important,
+      date: addingDate,
+      timeStart,
+      timeEnd,
+      isFinished,
+    });
+  };
+
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toast
+      .promise(db.deletePlan(email!, addingDate, id), {
+        pending: 'deleting',
+        error: 'error',
+        success: 'ok',
+      })
+      .then(() => {
+        dispatch(deletePlan({ date: addingDate, id }));
+      })
+      .catch((ev) => console.log(ev));
+  };
+
   return (
-    <Box
-      className={`${important} element_of_plan ${
-        disabled ? 'opacity_element' : ''
-      }`}
-      onClick={() => {
-        setOpenedPlan({
-          id,
-          name,
-          desc,
-          important,
-          date: addingDate,
-          timeStart,
-          timeEnd,
-          isFinished,
-        });
-      }}
-    >
+    <Box className={elementClasses} onClick={handleElementClick}>
       <Grid
         container
         spacing={2}
@@ -57,24 +73,7 @@ const ElementOfListPlans = ({
             {name} from {timeStart}
           </Typography>
         </Grid>
-        <Grid
-          item
-          xs={1}
-          className={'icon_del'}
-          onClick={(e) => {
-            e.stopPropagation();
-            toast
-              .promise(db.deletePlan(email!, addingDate, id), {
-                pending: 'deleting',
-                error: 'error',
-                success: 'ok',
-              })
-              .then(() => {
-                dispatch(deletePlan({ date: addingDate, id }));
-              })
-              .catch((ev) => console.log(ev));
-          }}
-        >
+        <Grid item xs={1} className={'icon_del'} onClick={handleDeleteClick}>
           <DeleteIcon />
         </Grid>
         <Grid item xs={1} className={'icon_full'}>
@@ -84,4 +83,5 @@ const ElementOfListPlans = ({
     </Box>
   );
 };
+
 export default ElementOfListPlans;

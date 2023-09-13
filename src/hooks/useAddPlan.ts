@@ -6,9 +6,10 @@ import { uid } from 'uid';
 import { useDispatch, useSelector } from 'react-redux';
 import { userSelector } from '../store/user/selector';
 import { getSelected } from '../store/workMode/selector';
-import { importance } from '../constants';
 import { AddPlanType } from '../components/AddPlan/AddPlan.type';
 import processingData from '../helpers/ProcessingData';
+
+import { importance } from '../constants/importance.constant';
 
 const useAddPlan = ({ defaultObj, setIsEdit, setOpenedPlan }: AddPlanType) => {
   const { email } = useSelector(userSelector);
@@ -17,6 +18,7 @@ const useAddPlan = ({ defaultObj, setIsEdit, setOpenedPlan }: AddPlanType) => {
   const [uuid, setUuid] = useState(defaultObj?.id || uid(32));
   const [name, setName] = useState(defaultObj?.name || '');
   const [desc, setDesc] = useState(defaultObj?.desc || '');
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const selectedDate = defaultObj?.date || useSelector(getSelected);
   const [important, setImportant] = useState(
     defaultObj?.important || importance[0].value

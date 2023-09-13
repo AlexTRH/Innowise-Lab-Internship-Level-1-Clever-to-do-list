@@ -8,10 +8,11 @@ import {
   MenuItem,
   TextField,
 } from '@mui/material';
-import { importance } from '../../constants';
 import { AddPlanType } from './AddPlan.type';
 import './AddPlan.css';
 import useAddPlan from '../../hooks/useAddPlan';
+
+import { importance } from '../../constants/importance.constant';
 
 const AddPlan = memo(
   ({ defaultObj, setIsEdit, setOpenedPlan }: AddPlanType) => {
@@ -115,10 +116,7 @@ const AddPlan = memo(
           </Grid>
         </CardContent>
         <CardActions className={'inputs'}>
-          <Button onClick={addPlan}>
-            {defaultObj?.id && 'Save'}
-            {!defaultObj?.id && 'Add'}
-          </Button>
+          <Button onClick={addPlan}>{defaultObj?.id ? 'Save' : 'Add'}</Button>
         </CardActions>
       </Card>
     );

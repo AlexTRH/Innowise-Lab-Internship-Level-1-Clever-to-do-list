@@ -1,23 +1,15 @@
 import React from 'react';
-import { Grid } from '@mui/material';
 import ButtonLink from '../ButtonLink/ButtonLink';
+
+import { ButtonLinks } from '../../constants/ButtonLinks.constant';
 
 const ButtonSign = () => {
   return (
     <>
-      <ButtonLink to={'signin'}>Sign in</ButtonLink>
-      <ButtonLink to={'signup'}>Sign Up</ButtonLink>
+      <ButtonLink to={'signin'}>{ButtonLinks.Signin}</ButtonLink>
+      <ButtonLink to={'signup'}>{ButtonLinks.Signup}</ButtonLink>
     </>
   );
 };
 
 export default ButtonSign;
-
-// <Grid container spacing={2}>
-// //   <Grid item xs={5}>
-// <ButtonLink to={'signin'}>Sign in</ButtonLink>
-// // </Grid>
-// // <Grid item xs={5}>
-// <ButtonLink to={'signup'}>Sign Up</ButtonLink>
-// {/*  </Grid>*/}
-// {/*</Grid>*/}

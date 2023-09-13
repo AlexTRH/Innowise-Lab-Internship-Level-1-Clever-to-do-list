@@ -1,12 +1,9 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { Box, Stack } from '@mui/material';
 import {
-  currDayInMonth,
-  dayInWeek,
-  daysInMonth,
-  paddingCalendar,
-  widthCalendarDay,
-} from '../../constants';
+  PADDING_CALENDAR,
+  WIDTH_CALENDAR_DAY,
+} from '../../constants/calendar.constant';
 import CalendarDay from '../CalendarDay/CalendarDay';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
@@ -22,6 +19,10 @@ import { setPlans } from '../../store/plans/plansSlice';
 import { getSelected } from '../../store/workMode/selector';
 import { IPlans } from '../../store/plans/IPlans';
 import processingData from '../../helpers/ProcessingData';
+import { daysInMonth } from '../../constants/daysInMonth.constant';
+
+import { currDayInMonth } from '../../constants/currDayInMonth.constant';
+import { dayInWeek } from '../../constants/dayInWeek.constnat';
 
 const Calendar = memo(() => {
   const { email } = useSelector(userSelector);
@@ -76,7 +77,6 @@ const Calendar = memo(() => {
     }
 
     const key = new Date(year, nextMonth + 1).toISOString().slice(0, 7);
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     db.getPlansOnMonth(email!, key)
       .then((result) => {
         let res = result.data();
@@ -117,14 +117,14 @@ const Calendar = memo(() => {
     if (
       carouselRef.current &&
       Math.floor(
-        (carouselRef.current.offsetWidth - paddingCalendar * 2) /
-          widthCalendarDay
+        (carouselRef.current.offsetWidth - PADDING_CALENDAR * 2) /
+          WIDTH_CALENDAR_DAY
       ) > arrOfDays.length
     ) {
       console.log(
         Math.floor(
-          (carouselRef.current.offsetWidth - paddingCalendar * 2) /
-            widthCalendarDay
+          (carouselRef.current.offsetWidth - PADDING_CALENDAR * 2) /
+            WIDTH_CALENDAR_DAY
         ),
         arrOfDays.length
       );

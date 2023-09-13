@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import processingData from '../helpers/ProcessingData';
-import { importance } from '../constants';
 import { userSelector } from '../store/user/selector';
 import { getPlans } from '../store/plans/selector';
 import { useSelector } from 'react-redux';
+
+import { importance } from '../constants/importance.constant';
 
 const useIsImportant = (selected: Date) => {
   const plans = useSelector(getPlans);
