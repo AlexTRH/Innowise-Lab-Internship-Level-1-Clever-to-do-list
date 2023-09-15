@@ -1,8 +1,8 @@
 export enum ButtonLinks {
-  Signin = 'Sign in',
-  Signup = 'Sign Up',
-  Plans = 'plans',
-  Profile = 'profile',
+  SignIn = 'Sign in',
+  SignUp = 'Sign Up',
+  Plans = 'Plans',
+  Profile = 'Profile',
 }
 
 export const importance = [

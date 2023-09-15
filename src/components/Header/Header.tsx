@@ -15,7 +15,7 @@ const Header = () => {
       <Logo />
 
       <div className="header__buttons">
-        <ButtonLink to={email ? ButtonLinks.Plans : ButtonLinks.Signin}>
+        <ButtonLink to={email ? ButtonLinks.Plans : ButtonLinks.SignIn}>
           Plans
         </ButtonLink>
         {email ? (

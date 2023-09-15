@@ -6,6 +6,7 @@ import './OneCard.css';
 import AddPlan from '../AddPlan/AddPlan';
 import EditIcon from '@mui/icons-material/Edit';
 import useChangeIsFinished from '../../hooks/useChangeIsFinished';
+import { renderContentItems } from '../../constants/ContentItems.constant';
 
 const OneCard = ({
   id,
@@ -36,18 +37,6 @@ const OneCard = ({
   };
 
   const renderCardContent = () => {
-    return (
-      <CardContent>
-        <div className={'edit'} onClick={handleEditClick}>
-          <EditIcon />
-        </div>
-        {renderContentItems()}
-        {renderFinishedCheckbox()}
-      </CardContent>
-    );
-  };
-
-  const renderContentItems = () => {
     const contentItems = [
       {
         title: 'Name:',
@@ -71,32 +60,32 @@ const OneCard = ({
       },
     ];
 
-    return contentItems.map((item, index) => (
-      <div key={index}>
-        <Typography variant="subtitle1">{item.title}</Typography>
-        <Typography variant="h6" gutterBottom component="div">
-          {item.value}
-        </Typography>
-      </div>
-    ));
+    return (
+      <CardContent>
+        <div className={'edit'} onClick={handleEditClick}>
+          <EditIcon />
+        </div>
+        {renderContentItems(contentItems)}
+        {renderFinishedCheckbox()}
+      </CardContent>
+    );
   };
 
   const renderFinishedCheckbox = () => {
-    if (isFinished || `${addingDate}T${timeEnd}` < date) {
-      return null;
+    if (`${addingDate}T${timeEnd}` >= date) {
+      return (
+        <div>
+          <Typography variant="subtitle1">Finished:</Typography>
+          <Checkbox
+            value={isEnd}
+            onChange={(e) => {
+              setFinished(e.target.checked);
+            }}
+          />
+        </div>
+      );
     }
-
-    return (
-      <div>
-        <Typography variant="subtitle1">Finished:</Typography>
-        <Checkbox
-          value={isEnd}
-          onChange={(e) => {
-            setFinished(e.target.checked);
-          }}
-        />
-      </div>
-    );
+    return null;
   };
 
   return (
