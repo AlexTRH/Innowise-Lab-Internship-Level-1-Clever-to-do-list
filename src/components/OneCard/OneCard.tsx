@@ -36,41 +36,6 @@ const OneCard = ({
     setIsEdit(true);
   };
 
-  const renderCardContent = () => {
-    const contentItems = [
-      {
-        title: 'Name:',
-        value: name,
-      },
-      {
-        title: 'Date:',
-        value: addingDate.toISOString(),
-      },
-      {
-        title: 'Description:',
-        value: desc || '',
-      },
-      {
-        title: 'Time start:',
-        value: timeStart,
-      },
-      {
-        title: 'Time end:',
-        value: timeEnd,
-      },
-    ];
-
-    return (
-      <CardContent>
-        <div className={'edit'} onClick={handleEditClick}>
-          <EditIcon />
-        </div>
-        {renderContentItems(contentItems)}
-        {renderFinishedCheckbox()}
-      </CardContent>
-    );
-  };
-
   const renderFinishedCheckbox = () => {
     if (`${addingDate}T${timeEnd}` >= date) {
       return (
@@ -86,6 +51,41 @@ const OneCard = ({
       );
     }
     return null;
+  };
+
+  const renderCardContent = () => {
+    const contentItems = [
+      {
+        title: 'Name',
+        value: name,
+      },
+      {
+        title: 'Date',
+        value: addingDate.toISOString(),
+      },
+      {
+        title: 'Description',
+        value: desc || '',
+      },
+      {
+        title: 'Time start',
+        value: timeStart,
+      },
+      {
+        title: 'Time end',
+        value: timeEnd,
+      },
+    ];
+
+    return (
+      <CardContent>
+        <div className={'edit'} onClick={handleEditClick}>
+          <EditIcon />
+        </div>
+        {renderContentItems(contentItems)}
+        {renderFinishedCheckbox()}
+      </CardContent>
+    );
   };
 
   return (

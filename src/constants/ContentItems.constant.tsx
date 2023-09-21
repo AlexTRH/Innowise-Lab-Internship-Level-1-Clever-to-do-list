@@ -9,9 +9,9 @@ type ContentItem = {
 export const renderContentItems = (contentItems: ContentItem[]) => {
   return contentItems.map((item, index) => (
     <div key={index}>
-      <Typography variant="subtitle1">{item.title}</Typography>
+      <Typography variant="subtitle1">{item.title}:</Typography>
       <Typography variant="h6" gutterBottom component="div">
-        {item.value}
+        {item.value}:
       </Typography>
     </div>
   ));
