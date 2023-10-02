@@ -39,7 +39,7 @@ const OneCard = ({
   const renderFinishedCheckbox = () => {
     if (`${addingDate}T${timeEnd}` >= date) {
       return (
-        <div>
+        <>
           <Typography variant="subtitle1">Finished:</Typography>
           <Checkbox
             value={isEnd}
@@ -47,7 +47,7 @@ const OneCard = ({
               setFinished(e.target.checked);
             }}
           />
-        </div>
+        </>
       );
     }
     return null;
