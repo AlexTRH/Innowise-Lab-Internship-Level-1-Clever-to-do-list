@@ -6,6 +6,7 @@ import './OneCard.css';
 import AddPlan from '../AddPlan/AddPlan';
 import EditIcon from '@mui/icons-material/Edit';
 import useChangeIsFinished from '../../hooks/useChangeIsFinished';
+import { renderContentItems } from '../../constants/ContentItems.constant';
 
 const OneCard = ({
   id,
@@ -31,40 +32,60 @@ const OneCard = ({
     isFinished,
   });
 
-  const contentItems = [
-    {
-      title: 'Name:',
-      value: name,
-    },
-    {
-      title: 'Date:',
-      value: addingDate.toISOString(),
-    },
-    {
-      title: 'Description:',
-      value: desc || '',
-    },
-    {
-      title: 'Time start:',
-      value: timeStart,
-    },
-    {
-      title: 'Time end:',
-      value: timeEnd,
-    },
-  ];
+  const handleEditClick = () => {
+    setIsEdit(true);
+  };
 
-  const finishedCheckbox = {
-    title: 'Finished',
-    condition: !(isFinished || `${addingDate}T${timeEnd}` < date),
-    component: (
-      <Checkbox
-        value={isEnd}
-        onChange={(e) => {
-          setFinished(e.target.checked);
-        }}
-      />
-    ),
+  const renderFinishedCheckbox = () => {
+    if (`${addingDate}T${timeEnd}` >= date) {
+      return (
+        <>
+          <Typography variant="subtitle1">Finished:</Typography>
+          <Checkbox
+            value={isEnd}
+            onChange={(e) => {
+              setFinished(e.target.checked);
+            }}
+          />
+        </>
+      );
+    }
+    return null;
+  };
+
+  const renderCardContent = () => {
+    const contentItems = [
+      {
+        title: 'Name',
+        value: name,
+      },
+      {
+        title: 'Date',
+        value: addingDate.toISOString(),
+      },
+      {
+        title: 'Description',
+        value: desc || '',
+      },
+      {
+        title: 'Time start',
+        value: timeStart,
+      },
+      {
+        title: 'Time end',
+        value: timeEnd,
+      },
+    ];
+
+    return (
+      <CardContent>
+        <div className={'edit'} onClick={handleEditClick}>
+          <EditIcon />
+        </div>
+        {renderContentItems(contentItems)}
+        {renderFinishedCheckbox()}
+      </CardContent>
+    );
   };
 
   return (
@@ -73,38 +94,7 @@ const OneCard = ({
         <div className={'cross'} onClick={() => setOpenedPlan(null)}>
           <CloseIcon />
         </div>
-        {!isEdit && (
-          <CardContent>
-            <div className={'edit'} onClick={() => setIsEdit(true)}>
-              <EditIcon />
-            </div>
-            {contentItems.map((item, index) => (
-              <div key={index}>
-                <Typography>{item.title}</Typography>
-                <Typography variant="h6" gutterBottom component="div">
-                  {item.value}
-                </Typography>
-              </div>
-            ))}
-            {finishedCheckbox.condition && finishedCheckbox.component}
-          </CardContent>
-        )}
-        {isEdit && (
-          <AddPlan
-            defaultObj={{
-              name,
-              desc,
-              important,
-              date: addingDate,
-              timeStart,
-              timeEnd,
-              id,
-              isFinished: isEnd,
-            }}
-            setIsEdit={setIsEdit}
-            setOpenedPlan={setOpenedPlan}
-          />
-        )}
+        {!isEdit ? renderCardContent() : <AddPlan />}
       </Card>
     </Box>
   );

@@ -10,8 +10,8 @@ import {
   setLoading,
 } from '../../store/isLoading/isLoadingSlice';
 import useIsImportant from '../../hooks/useIsImportant';
-import { MonthArr } from '../../constants/monthArr.constant';
-import { importance } from '../../constants/importance.constant';
+import { MonthArr } from '../../constants/Dates.constant';
+import { importance } from '../../constants/Button.constant';
 
 const CalendarDay = memo(
   ({ dayOfWeek, dayOfMonth, month, isSelected, selected }: ICalendarDay) => {

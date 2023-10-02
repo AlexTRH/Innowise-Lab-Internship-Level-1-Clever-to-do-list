@@ -6,7 +6,7 @@ import Logo from '../Logo/Logo';
 import ButtonLink from '../ButtonLink/ButtonLink';
 import ButtonSign from '../ButtonsSign/ButtonSign';
 
-import { ButtonLinks } from '../../constants/ButtonLinks.constant';
+import { ButtonLinks } from '../../constants/Button.constant';
 
 const Header = () => {
   const { email } = useSelector(userSelector);
@@ -15,7 +15,7 @@ const Header = () => {
       <Logo />
 
       <div className="header__buttons">
-        <ButtonLink to={email ? ButtonLinks.Plans : ButtonLinks.Signin}>
+        <ButtonLink to={email ? ButtonLinks.Plans : ButtonLinks.SignIn}>
           Plans
         </ButtonLink>
         {email ? (

@@ -9,7 +9,7 @@ import { getSelected } from '../store/workMode/selector';
 import { AddPlanType } from '../components/AddPlan/AddPlan.type';
 import processingData from '../helpers/ProcessingData';
 
-import { importance } from '../constants/importance.constant';
+import { importance } from '../constants/Button.constant';
 
 const useAddPlan = ({ defaultObj, setIsEdit, setOpenedPlan }: AddPlanType) => {
   const { email } = useSelector(userSelector);
